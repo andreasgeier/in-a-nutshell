@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Cheat Sheet</title>
+
+    <!-- Normalize CSS via GitHub -->
+    <link rel="stylesheet" href="https://github.com/necolas/normalize.css/blob/master/normalize.css">
+
+    <!-- fonts.google.com -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto+Serif:ital,opsz,wght@0,8..144,300;0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;1,8..144,300;1,8..144,400;1,8..144,500;1,8..144,600;1,8..144,700&display=swap" rel="stylesheet">
+
+    <!-- highlight.js via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark-dimmed.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <!-- use this snippet if you want to highlight custom tags
+    <script>
+        'use strict'
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('p code').forEach((el) => {
+                hljs.highlightElement(el);
+            });
+        });
+    </script>
+    -->
+
+    <!-- custom page styles -->
+    <style>
+        html {
+            color: rgb(34, 39, 46); 
+            font-family: 'Roboto Serif', serif;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            /* scroll-padding-top: 5rem; */
+        }
+        body {
+            margin: 0;
+        }
+        /* header and navigation */
+        header {
+        }        
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin: 1rem;
+        }
+        .hamburger-menu {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+        }
+        #menu-icon {
+            display: none;
+        }
+        label {
+            position: absolute;
+            display: block;
+            top: 0;
+            right: 0;
+            width: 1.25rem; 
+            height: 1.25rem;  
+            cursor: pointer;
+            background-color: white;
+            border: 1rem solid white;
+            border-radius: 50%; 
+        }
+        label:hover, label:focus             {
+            background-color: rgb(236, 237, 238);;
+            border-color: rgb(236, 237, 238);;
+        }        
+        label div {
+            position: relative;
+            top: 0;
+            height: 20%;
+            background-color: black;
+            margin-bottom: 20%;
+            transition: 0.3s ease transform, 0.3s ease top, 0.3s ease width,
+                0.3s ease right;
+        }
+        label div:first-child {
+            transform-origin: 0;
+        }
+        label div:last-child {
+            margin-bottom: 0;
+            transform-origin: 100%;
+        }
+        label div:nth-child(2) {
+            right: 0;
+            width: 100%;
+        }
+        #menu-icon:checked + label div:first-child {
+            top: -10%;
+            transform: rotateZ(45deg);
+        }
+        #menu-icon:checked + label div:last-child {
+            top: 10%;
+            transform: rotateZ(45deg);
+        }
+        #menu-icon:checked + label div:nth-child(2) {
+            width: 141%;
+            top: 0;
+            right: 21%;
+            transform: rotateZ(-45deg);
+        }
+        /* content */
+        main {
+            max-width: 50rem;
+            padding: 1rem 6rem;
+            margin: auto;
+        }
+        footer {
+            color: rgb(95, 99, 104);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            background-color: rgb(248, 249, 250);
+        }
+        pre {
+            margin: 1rem 0 1.5rem; 
+        }
+        code {
+            font-family: 'Roboto Mono', monospace;
+            border-radius: .5rem;   
+        }
+        p code {
+            padding: 0 .25rem .125rem;
+            background-color: rgb(236, 237, 238);
+            border-radius: .25rem;
+        }
+        h2, h3 {
+            font-size: 1.5rem;
+            position: relative;
+            scroll-margin-top: 2rem;
+        }
+        h2:not(:first-of-type) {
+            padding-top: 5rem;
+            margin-top: 6rem;
+            border-top: 2px solid rgb(34, 39, 46);
+        }
+        h2:not(:first-of-type) a:hover::before {
+            top: 5.125rem;
+        }
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 2rem;
+        }
+        h3 span {
+            /* color: rgb(151, 156, 161); */
+        }
+        h2 a, h2 a:visited, h2 a:active, h3 a, h3 a:visited, h3 a:active {
+           color: inherit;
+           text-decoration: none; 
+        }
+        h2 a:hover::before, h3 a:hover::before {
+            position: absolute;
+            display: block;
+            width: 1.5rem;
+            height: 1.5rem;
+            padding: 0;
+            content: url('data:image/svg+xml;utf8,<svg id="Flat" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M212.853,122.34277l-28.28418,28.28516a56.06576,56.06576,0,0,1-79.19629,0,12.0001,12.0001,0,0,1,16.9707-16.9707,32.03673,32.03673,0,0,0,45.25488,0l28.28418-28.28516a31.99969,31.99969,0,1,0-45.25488-45.25391L138.979,71.76562a12.0001,12.0001,0,1,1-16.9707-16.9707l11.64844-11.64746A55.99989,55.99989,0,1,1,212.853,122.34277Zm-95.834,61.89356-11.64648,11.64551a31.99969,31.99969,0,0,1-45.25488-45.25391l28.28418-28.28516a32.03673,32.03673,0,0,1,45.25488,0,12.0001,12.0001,0,0,0,16.9707-16.9707,56.06459,56.06459,0,0,0-79.19629,0L43.147,133.65723a55.9999,55.9999,0,0,0,79.19629,79.19531L133.98975,201.207a12.0001,12.0001,0,1,0-16.97071-16.9707Z"/></svg>');
+            transform: translateX(calc(-100% - .5rem));
+        }
+        h2 a:hover::before {
+            top: .125rem;
+        }
+        .divider {
+            display: inline-block;
+            margin: auto .5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- <h1>JavaScript ... in a nutshell</h1> --> 
+        <div class="hamburger-menu">
+            <input type="checkbox" id="menu-icon">
+            <label for="menu-icon">
+            <div></div>
+            <div></div>
+            <div></div>
+            </label>
+        </div>
+    </header>
+
+    <main>
+        
+
+        <h2 id="string-methods"><a href="#string-methods">String methods</a></h2>
+
+        <!-- string.at() -->
+        <section>
+            <h3 id="string.at"><a href="#string.at"><span>String</span>.at()</a></h3>
+            <pre><code class="language-javascript">const str = 'Hello World'
+
+str.at(1) // => 'e'
+str.at(-2) // => 'l'
+str.at(99) // => undefined</code></pre>
+            <p>The <code>at()</code> method takes an integer value and returns a new String consisting of the single UTF-16 code unit located at the specified offset. This method allows for positive and negative integers. Negative integers count back from the last string character.</p>
+            <p>Syntax: <code>at(index)</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+        <!-- string.charAt() -->
+        <section>
+            <h3 id="string.charat"><a href="#string.charat"><span>String</span>.charAt()</a></h3>
+            <pre><code class="language-javascript">const str = 'Hello World'
+
+str.charAt(1) // => 'e'
+str.charAt(99) // => ''</code></pre>
+            <p>The <code>charAt()</code> method of String values returns a new string consisting of the single UTF-16 code unit located at the specified offset into the string.</p>
+            <p>Syntax: <code>charAt(index)</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+        <!-- string.concat() -->
+        <section>
+            <h3 id="string.concat"><a href="#string.concat"><span>String</span>.concat()</a></h3>
+            <pre><code class="language-javascript">const str1 = 'Hello'
+const str2 = 'World'
+
+str1.concat(' ', str2) // => 'Hello World'</code></pre>
+            <p>The <code>concat()</code> method concatenates the string arguments to the calling string and returns a new string.</p>
+            <p>Syntax: <code>concat(string)</code> <code>concat(string1, string2, /* ..., */ stringN)</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+        
+        <!-- string.endsWith() -->
+        <section>
+            <h3 id="string.endswith"><a href="#string.endswith"><span>String</span>.endsWith()</a></h3>
+            <pre><code class="language-javascript">const str = 'Hello World'
+
+str.endsWith('World') // => true
+str.endsWith('World', 5) // => false</code></pre>
+            <p>The <code>endsWith()</code> method determines whether a string ends with the characters of a specified string, returning <code>true</code> or <code>false</code> as appropriate.</p>
+            <p>Syntax: <code>endsWith(searchString)</code> <code>endsWith(searchString, endPosition)</code> <span class="divider">/</span> Return value: Boolean</p>
+        </section>
+
+        <!-- string.includes() -->
+        <section>
+            <h3 id="string.includes"><a href="#string.includes"><span>String</span>.includes()</a></h3>
+            <pre><code class="language-javascript">const str = 'Hello World'
+
+str.includes('Hello') // => true
+str.includes('Hello', 5) // => false</code></pre>
+            <p>The <code>includes()</code> method performs a case-sensitive search to determine whether one string may be found within another string, returning <code>true</code> or <code>false</code> as appropriate.</p>
+            <p>Syntax: <code>includes(searchString)</code> <code>includes(searchString, startPosition)</code> <span class="divider">/</span> Return value: Boolean</p>
+        </section>
+
+        <!-- string.indexOf() -->
+        <section>
+            <h3 id="string.indexof"><a href="#string.indexof"><span>String</span>.indexOf()</a></h3>
+            <pre><code class="language-javascript">const str = 'Hello World'
+
+str.indexOf('lo') // => 3
+str.indexOf('lo', 5) // => -1</code></pre>
+            <p>The <code>indexOf()</code> method of String values searches this string and returns the index of the first occurrence of the specified substring. It takes an optional starting position and returns the first occurrence of the specified substring at an index greater than or equal to the specified number.</p>
+            <p>Syntax: <code>indexOf(searchString)</code> <code>indexOf(searchString, startPosition)</code> <span class="divider">/</span> Return value: Found index as Integer, or <code>-1</code> if not found</p>
+        </section>
+
+        <!-- string.lastIndexOf() -->
+        <section>
+            <h3 id="string.lastindexof"><a href="#string.lastindexof"><span>String</span>.lastIndexOf()</a></h3>
+            <pre><code class="language-javascript">const str = 'My dog is not like other dogs.'
+
+str.lastIndexOf('dog') // => 24
+str.lastIndexOf('dog', 15) // => 3</code></pre>
+            <p>The <code>lastIndexOf()</code> method of String values searches this string and returns the index of the last occurrence of the specified substring. It takes an optional starting position and returns the last occurrence of the specified substring at an index less than or equal to the specified number.</p>
+            <p>Syntax: <code>lastIndexOf(searchString)</code> <code>lastIndexOf(searchString, endPosition)</code> <span class="divider">/</span> Return value: Found index, or <code>-1</code> if not found</p>
+        </section>
+
+        <!-- string.match() -->
+        <section>
+            <h3 id="string.match"><a href="#string.match"><span>String</span>.match()</a></h3>
+            <pre><code class="language-javascript">const str = 'Hello World'
+
+str.match(/[A-Z]/g) // => ['H', 'W']
+str.match(/[A-Z]/) // => ['H']
+str.match(/[0-9]/) // => null</code></pre>
+            <p>The <code>match()</code> method retrieves the result of matching a string against a regular expression (regex).</p>
+            <p>Syntax: <code>match(regex)</code> <span class="divider">/</span> Return value: Array</p>
+        </section>
+
+        <!-- string.padEnd() -->
+        <section>
+            <h3 id="string.padend"><a href="#string.padend"><span>String</span>.padEnd()</a></h3>
+            <pre><code class="language-javascript">const str = 'abc'
+
+str.padEnd(8) // => 'abc     '
+str.padEnd(8, '.') // => 'abc.....'</code></pre>
+            <p>The <code>padEnd()</code> method pads the current string with a given string (repeated, if needed) so that the resulting string reaches a given length. The padding is applied from the end of the current string.</p>
+            <p>Syntax: <code>padEnd(targetLength)</code> <code>padEnd(targetLength, padString)</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+        <!-- string.padStart() -->
+        <section>
+            <h3 id="string.padstart"><a href="#string.padstart"><span>String</span>.padStart()</a></h3>
+            <pre><code class="language-javascript">const last4DigitsOfCreditCard = '6789'
+
+last4DigitsOfCreditCard.padStart(16, '*') // => '************6789'</code></pre>
+            <p>The <code>padStart()</code> method pads the current string with another string (multiple times, if needed) until the resulting string reaches the given length. The padding is applied from the start of the current string.</p>
+            <p>Syntax: <code>padStart(targetLength)</code> <code>padStart(targetLength, padString)</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+        <!-- string.repeat() -->
+        <section>
+            <h3 id="string.repeat"><a href="#string.repeat"><span>String</span>.repeat()</a></h3>
+            <pre><code class="language-javascript">const str = 'Hello World! '
+
+str.repeat(2) // => 'Hello World! Hello World! '</code></pre>
+            <p>The <code>repeat()</code> method constructs and returns a new string which contains the specified number of copies of the string on which it was called, concatenated together.</p>
+            <p>Syntax: <code>repeat(count)</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+        <!-- string.replace() -->
+        <section>
+            <h3 id="string.replace"><a href="#string.replace"><span>String</span>.replace()</a></h3>
+            <pre><code class="language-javascript">const str = 'My dog is not like other dogs.'
+
+str.replace('dog', 'cat') // => 'My cat is not like other dogs.'
+str.replace(/dog/g, 'cat') // => 'My cat is not like other cats.'</code></pre>
+            <p>The <code>replace()</code> method returns a new string with one, some, or all matches of a pattern replaced by a replacement. The pattern can be a string or a RegEx, and the replacement can be a string or a function called for each match. If pattern is a string, only the first occurrence will be replaced. The original string is left unchanged.</p>
+            <p>Syntax: <code>replace(pattern, replacement)</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+        <!-- string.replaceAll() -->
+        <section>
+            <h3 id="string.replaceall"><a href="#string.replaceall"><span>String</span>.replaceAll()</a></h3>
+            <pre><code class="language-javascript">const str = 'My dog is not like other dogs.'
+
+str.replaceAll('dog', 'cat') // => 'My cat is not like other cats.'</code></pre>
+            <p>The <code>replaceAll()</code> method returns a new string with all matches of a pattern replaced by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match. The original string is left unchanged.</p>
+            <p>Syntax: <code>replaceAll(pattern, replacement)</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+        <!-- string.search() -->
+        <section>
+            <h3 id="string.search"><a href="#string.search"><span>String</span>.search()</a></h3>
+            <pre><code class="language-javascript">const str = 'Hello World'
+
+str.search(/W/g) // => 6</code></pre>
+            <p>The <code>search()</code> method executes a search for a match between a regular expression and this String object.</p>
+            <p>Syntax: <code>search(regex)</code> <span class="divider">/</span> Return value: Index of the first match, or <code>-1</code> if no match was found</p>
+        </section>
+
+        <!-- string.slice() -->
+        <section>
+            <h3 id="string.slice"><a href="#string.slice"><span>String</span>.slice()</a></h3>
+            <pre><code class="language-javascript">const str = 'My dog is not like other dogs.'
+
+str.slice(14) // => 'like other dogs.'
+str.slice(3, 6) // => 'dog'
+str.slice(-5) // => 'dogs.'
+str.slice(-11, -6) // => 'other'</code></pre>
+            <p>The <code>slice()</code> method extracts a section of a string and returns it as a new string, without modifying the original string.</p>
+            <p>Syntax: <code>slice(indexStart)</code> <code>slice(indexStart, indexEnd)</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+        <!-- string.split() -->
+        <section>
+            <h3 id="string.split"><a href="#string.split"><span>String</span>.split()</a></h3>
+            <pre><code class="language-javascript">const str = 'My dog is not like other dogs.'
+
+str.split(' ') // => ['My', 'dog', 'is', 'not', 'like', 'other', 'dogs.']
+str.split(' ', 3) // => ['My', 'dog', 'is']
+str.split('')[1] // => 'y'</code></pre>
+            <p>The <code>split()</code> method takes a pattern and divides a String into an ordered list of substrings by searching for the pattern, puts these substrings into an array, and returns the array.</p>
+            <p>Syntax: <code>split(separator)</code> <code>split(separator, limit)</code> <span class="divider">/</span> Return value: Array</p>
+        </section>
+
+        <!-- string.startsWith() -->
+        <section>
+            <h3 id="string.startswith"><a href="#string.startswith"><span>String</span>.startsWith()</a></h3>
+            <pre><code class="language-javascript">const str = 'Hello World'
+
+str.startsWith('He') // => true
+str.startsWith('He', 3) // => false</code></pre>
+            <p>The <code>startsWith()</code> method determines whether a string begins with the characters of a specified string, returning <code>true</code> or <code>false</code> as appropriate.</p>
+            <p>Syntax: <code>startsWith(searchString)</code> <code>startsWith(searchString, startPosition)</code> <span class="divider">/</span> Return value: Boolean</p>
+        </section>
+
+        <!-- string.substring() -->
+        <section>
+            <h3 id="string.substring"><a href="#string.substring"><span>String</span>.substring()</a></h3>
+            <pre><code class="language-javascript">const str = 'Hello World'
+
+str.substring(6) // => 'World'
+str.substring(6, 9) // => 'Wor'</code></pre>
+            <p>The <code>substring()</code> method returns the part of the string from the start index up to and excluding the end index, or to the end of the string if no end index is supplied.</p>
+            <p>Syntax: <code>substring(indexStart)</code> <code>substring(indexStart, indexEnd)</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+        <!-- string.toLowerCase() -->
+        <section>
+            <h3 id="string.tolowercase"><a href="#string.tolowercase"><span>String</span>.toLowerCase()</a></h3>
+            <pre><code class="language-javascript">const str = 'Hello World'
+
+str.toLowerCase() // => 'hello world'</code></pre>
+            <p>The <code>toLowerCase()</code> method returns the calling string value converted to lower case.</p>
+            <p>Syntax: <code>toLowerCase()</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+        <!-- string.toUpperCase() -->
+        <section>
+            <h3 id="string.touppercase"><a href="#string.touppercase"><span>String</span>.toUpperCase()</a></h3>
+            <pre><code class="language-javascript">const str = 'Hello World'
+
+str.toUpperCase() // => 'HELLO WORLD'</code></pre>
+            <p>The toUpperCase() method returns the calling string value converted to uppercase.</p>
+            <p>Syntax: <code>toUpperCase()</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+        <!-- string.trim() -->
+        <section>
+            <h3 id="string.trim"><a href="#string.trim"><span>String</span>.trim()</a></h3>
+            <pre><code class="language-javascript">const str = '   Hello World   '
+
+str.trim() // => 'Hello World'</code></pre>
+            <p>The <code>trim()</code> method removes whitespace from both ends of a string and returns a new string, without modifying the original string.</p>
+            <p>Syntax: <code>trim()</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+        <!-- string.trimEnd() -->
+        <section>
+            <h3 id="string.trimend"><a href="#string.trimend"><span>String</span>.trimEnd()</a></h3>
+            <pre><code class="language-javascript">const str = '   Hello World   '
+
+str.trimEnd() // => '   Hello World'</code></pre>
+            <p>The <code>trimEnd()</code> method removes whitespace from the end of a string and returns a new string, without modifying the original string. <code>trimRight()</code> is an alias of this method.</p>
+            <p>Syntax: <code>trimEnd()</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+        <!-- string.trimStart() -->
+        <section>
+            <h3 id="string.trimstart"><a href="#string.trimstart"><span>String</span>.trimStart()</a></h3>
+            <pre><code class="language-javascript">const str = '   Hello World   '
+
+str.trimStart() // => 'Hello World   '</code></pre>
+            <p>The <code>trimStart()</code> method removes whitespace from the beginning of a string and returns a new string, without modifying the original string. <code>trimLeft()</code> is an alias of this method.</p>
+            <p>Syntax: <code>trimStart()</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+
+
+
+
+
+        <h2 id="array-methods"><a href="#array-methods">Array methods</a></h2>
+
+        <!-- array.at() -->
+        <section>
+            <h3 id="array.at"><a href="#array.at"><span>Array</span>.at()</a></h3>
+            <pre><code class="language-javascript">const arr = [1, 2, 3, 4]
+
+arr.at(1) // => 2
+arr.at(-1) // => 4</code></pre>
+            <p>The <code>at()</code> method takes an integer value and returns the item at that index, allowing for positive and negative integers. Negative integers count back from the last item in the array.</p>
+            <p>Syntax: <code>at(index)</code> <span class="divider">/</span> Return value: Array element</p>
+        </section>
+
+        <!-- array.concat() -->
+        <section>
+            <h3 id="array.concat"><a href="#array.concat"><span>Array</span>.concat()</a></h3>
+            <pre><code class="language-javascript">const arr1 = [1, 2, 3]
+const arr2 = [4, 5, 6]
+
+arr1.concat(arr2) // => [1, 2, 3, 4, 5, 6]</code></pre>
+            <p>The <code>concat()</code> method is used to merge two or more arrays. This method does not change the existing arrays, but instead returns a new array.</p>
+            <p>Syntax: <code>concat(value)</code> <code>concat(value0, value1, /* … ,*/ valueN)</code> <span class="divider">/</span> Return value: Array</p>
+        </section>
+
+        <!-- array.every() -->
+        <section>
+            <h3 id="array.every"><a href="#array.every"><span>Array</span>.every()</a></h3>
+            <pre><code class="language-javascript">const arr = [1, 2, 3]
+const isNumber = el => typeof el === 'number'
+
+arr.every(isNumber) // => true</code></pre>
+            <p>The <code>every()</code> method tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value.</p>
+            <p>Syntax: <code>every(callbackFn)</code> <span class="divider">/</span> Return value: Boolean</p>
+        </section>
+
+        <!-- array.fill() -->
+        <section>
+            <h3 id="array.fill"><a href="#array.fill"><span>Array</span>.fill()</a></h3>
+            <pre><code class="language-javascript">const arr = new Array(3)
+
+arr.fill('a') // => ['a', 'a', 'a']
+arr.fill('b', 1, 2) // => ['a', 'b', 'a']</code></pre>
+            <p>The <code>fill()</code> method changes all elements in an array to a static value, from a start index (default 0) to an end index (default array.length). It returns the modified array.</p>
+            <p>Syntax: <code>fill(value)</code> or <code>fill(value, start, end)</code> <span class="divider">/</span> Return value: Array</p>
+        </section>
+
+        <!-- array.filter() -->
+        <section>
+            <h3 id="array.filter"><a href="#array.filter"><span>Array</span>.filter()</a></h3>
+            <pre><code class="language-javascript">const arr = [1, 2, 3, 4, 5]
+const threshold = el => el > 3
+
+arr.filter(threshold) // => [4, 5]</code></pre>
+            <p>The <code>filter()</code> method creates a copy of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.</p>
+            <p>Syntax: <code>filter(callbackFn)</code> <span class="divider">/</span> Return value: Array</p>
+        </section>
+
+        <!-- array.find() -->
+        <section>
+            <h3 id="array.find"><a href="#array.find"><span>Array</span>.find()</a></h3>
+            <pre><code class="language-javascript">const arr = [1, 2, 3, 4, 5]
+const threshold = el => el > 3
+
+arr.find(threshold) // => 4</code></pre>
+            <p>The <code>find()</code> method returns the first element in the provided array that satisfies the provided testing function. If no values satisfy the testing function, undefined is returned.</p>
+            <p>Syntax: <code>find(callbackFn)</code> <span class="divider">/</span> Return value: Array element</p>
+        </section>
+
+        <!-- array.findIndex() -->
+        <section>
+            <h3 id="array.findIndex"><a href="#array.findIndex"><span>Array</span>.findIndex()</a></h3>
+            <pre><code class="language-javascript">const arr = [1, 2, 3, 4, 5]
+const threshold = el => el > 3
+
+arr.findIndex(threshold) // => 3</code></pre>
+            <p>The <code>findIndex()</code> method returns the index of the first element in an array that satisfies the provided testing function. If no elements satisfy the testing function, -1 is returned.</p>
+            <p>Syntax: <code>findIndex(callbackFn)</code> <span class="divider">/</span> Return value: Index</p>
+        </section>
+
+        <!-- array.findLast() -->
+        <section>
+            <h3 id="array.findLast"><a href="#array.findLast"><span>Array</span>.findLast()</a></h3>
+            <pre><code class="language-javascript">const arr = [1, 2, 3, 4, 5]
+const threshold = el => el > 3
+
+arr.findLast(threshold) // => 5</code></pre>
+            <p>The <code>findLast()</code> method iterates the array in reverse order and returns the value of the first element that satisfies the provided testing function. If no elements satisfy the testing function, <code>undefined</code> is returned.</p>
+            <p>Syntax: <code>findLast(callbackFn)</code> <span class="divider">/</span> Return value: Array element</p>
+        </section>
+
+        <!-- array.findLastIndex() -->
+        <section>
+            <h3 id="array.findLastIndex"><a href="#array.findLastIndex"><span>Array</span>.findLastIndex()</a></h3>
+            <pre><code class="language-javascript">const arr = [1, 2, 3, 4, 5]
+const threshold = el => el > 3
+
+arr.findLastIndex(threshold) // => 4</code></pre>
+            <p>The <code>findLastIndex()</code> method iterates the array in reverse order and returns the index of the first element that satisfies the provided testing function. If no elements satisfy the testing function, <code>-1</code> is returned.</p>
+            <p>Syntax: <code>findLastIndex(callbackFn)</code> <span class="divider">/</span> Return value: Index</p>
+        </section>
+
+        <!-- array.flat() -->
+        <section>
+            <h3 id="array.flat"><a href="#array.flat"><span>Array</span>.flat()</a></h3>
+            <pre><code class="language-javascript">const arr1 = [1, 2, [3, 4]]
+const arr2 = [1, 2, [[[3, 4]]]]
+
+arr1.flat() // => [1, 2, 3, 4]
+arr2.flat(2) // => [1, 2, [3, 4]]</code></pre>
+            <p>The <code>flat()</code> method creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.</p>
+            <p>Syntax: <code>flat()</code> <code>flat(depth)</code> <span class="divider">/</span> Return value: Array</p>
+        </section>
+
+        <!-- array.forEach() -->
+        <section>
+            <h3 id="array.forEach"><a href="#array.forEach"><span>Array</span>.forEach()</a></h3>
+            <pre><code class="language-javascript">const arr1 = [1, 2, 3]
+const arr2 = []
+
+arr1.forEach(el => arr2.push(el * el))
+
+console.log(arr2) // => [1, 4, 9]</code></pre>
+            <p>The <code>forEach()</code> method executes a provided function once for each array element. <code>forEach()</code> always returns undefined and is not chainable.</p>
+            <p>Syntax: <code>forEach(callbackFn)</code> <span class="divider">/</span> Return value: <code>undefined</code></p>
+        </section>
+
+        <!-- array.from() -->
+        <section>
+            <h3 id="array.from"><a href="#array.from"><span>Array</span>.from()</a></h3>
+            <pre><code class="language-javascript">Array.from('abc') // => ['a', 'b', 'c']
+Array.from([1, 2, 3], el => el * el) // => [1, 4, 9]</code></pre>
+            <p>The <code>Array.from()</code> static method creates a new, shallow-copied Array instance from an iterable or array-like object.</p>
+            <p>Syntax: <code>from(arrayLike)</code> <code>from(arrayLike, mapFn)</code> <span class="divider">/</span> Return value: Array</p>
+        </section>
+
+        <!-- array.includes() -->
+        <section>
+            <h3 id="array.includes"><a href="#array.includes"><span>Array</span>.includes()</a></h3>
+            <pre><code class="language-javascript">const arr = ['cat', 'dog', 'horse']
+
+arr.includes('cat') // => true
+arr.includes('ca') // => false</code></pre>
+            <p>The <code>includes()</code> method determines whether an array includes a certain value among its entries, returning <code>true</code> or <code>false</code> as appropriate.</p>
+            <p>Syntax: <code>includes(searchElement)</code> <span class="divider">/</span> Return value: Boolean</p>
+        </section>
+
+        <!-- array.indexOf() -->
+        <section>
+            <h3 id="array.indexOf"><a href="#array.indexOf"><span>Array</span>.indexOf()</a></h3>
+            <pre><code class="language-javascript">const arr = ['cat', 'dog', 'horse', 'cat']
+
+arr.indexOf('cat') // => 0
+arr.indexOf('cat', 1) // => 3</code></pre>
+            <p>The <code>indexOf()</code> method returns the first index at which a given element can be found in the array, or <code>-1</code> if it is not present.</p>
+            <p>Syntax: <code>indexOf(searchElement)</code> <code>indexOf(searchElement, fromIndex)</code> <span class="divider">/</span> Return value: Index</p>
+        </section>
+
+        <!-- array.join() -->
+        <section>
+            <h3 id="array.join"><a href="#array.join"><span>Array</span>.join()</a></h3>
+            <pre><code class="language-javascript">const arr = ['Bike', 'Car', 'Truck']
+
+arr.join() // => 'Bike,Car,Truck'
+arr.join('') // => 'BikeCarTruck'
+arr.join(' - ') // => 'Bike - Car - Truck'</code></pre>
+            <p></p>
+            <p>Syntax: <code>join()</code> <code>join(separator)</code> <span class="divider">/</span> Return value: String</p>
+        </section>
+
+        <!-- array.lastIndexOf() -->
+        <section>
+            <h3 id="array.lastIndexOf"><a href="#array.lastIndexOf"><span>Array</span>.lastIndexOf()</a></h3>
+            <pre><code class="language-javascript">const arr = ['cat', 'dog', 'horse', 'cat']
+
+arr.lastIndexOf('cat') // => 3
+arr.lastIndexOf('cat', 1) // => 0</code></pre>
+            <p>The <code>lastIndexOf()</code> method returns the last index at which a given element can be found in the array, or <code>-1</code> if it is not present. The array is searched backwards, starting at fromIndex.</p>
+            <p>Syntax: <code>lastIndexOf(searchElement)</code> <code>lastIndexOf(searchElement, fromIndex)</code> <span class="divider">/</span> Return value: Index</p>
+        </section>
+
+        <!-- array.map() -->
+        <section>
+            <h3 id="array.map"><a href="#array.map"><span>Array</span>.map()</a></h3>
+            <pre><code class="language-javascript">const arr1 = [1, 2, 3]
+
+const arr2 = arr1.map(el => el * el) // => [1, 4, 9]</code></pre>
+            <p>The <code>map()</code> method creates a new array populated with the results of calling a provided function on every element in the calling array.</p>
+            <p>Syntax: <code>map(callbackFn)</code> <span class="divider">/</span> Return value: </p>
+        </section>
+
+        <!-- array.pop() -->
+        <section>
+            <h3 id="array.pop"><a href="#array.pop"><span>Array</span>.pop()</a></h3>
+            <pre><code class="language-javascript">const arr = ['cat', 'dog', 'horse']
+
+arr.pop() // => 'horse'
+console.log(arr) // => ['cat', 'dog']</code></pre>
+            <p></p>
+            <p>Syntax: <code>pop()</code> <span class="divider">/</span> Return value: Array element</p>
+        </section>
+
+        <!-- array.method() -->
+        <section>
+            <h3 id="array.method"><a href="#array.method"><span>Array</span>.method()</a></h3>
+            <pre><code class="language-javascript">const arr = []
+
+arr.method() // => []</code></pre>
+            <p></p>
+            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
+        </section>
+
+        <!-- array.method() -->
+        <section>
+            <h3 id="array.method"><a href="#array.method"><span>Array</span>.method()</a></h3>
+            <pre><code class="language-javascript">const arr = []
+
+arr.method() // => []</code></pre>
+            <p></p>
+            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
+        </section>
+
+
+
+
+
+
+        <h2 id="object-methods"><a href="#object-methods">Object methods</a></h2>
+
+        <!-- object.method() -->
+        <section>
+            <h3 id="object.method"><a href="#object.method"><span>Object</span>.method()</a></h3>
+            <pre><code class="language-javascript">const obj = {}
+
+obj.method() // => {}</code></pre>
+            <p></p>
+            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Footer - no content yet</p>
+    </footer>
+</body>
+</html>
