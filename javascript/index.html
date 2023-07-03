@@ -40,20 +40,20 @@
         body {
             margin: 0;
         }
-        /* header and navigation */
-        header {
-        }        
+        /* header */
         h1 {
             font-size: 1.5rem;
             font-weight: 300;
             margin: 1rem;
         }
+        /* hamburger animation inspired by https://codepen.io/himalayasingh/pen/mNOJPM?editors=1100 */
         .hamburger-menu {
+            z-index: 2;
             position: fixed;
             top: 1.5rem;
             right: 1.5rem;
         }
-        #menu-icon {
+        #hamburger {
             display: none;
         }
         label {
@@ -92,19 +92,58 @@
             right: 0;
             width: 100%;
         }
-        #menu-icon:checked + label div:first-child {
+        #hamburger:checked + label div:first-child {
             top: -10%;
             transform: rotateZ(45deg);
         }
-        #menu-icon:checked + label div:last-child {
+        #hamburger:checked + label div:last-child {
             top: 10%;
             transform: rotateZ(45deg);
         }
-        #menu-icon:checked + label div:nth-child(2) {
+        #hamburger:checked + label div:nth-child(2) {
             width: 141%;
             top: 0;
             right: 21%;
             transform: rotateZ(-45deg);
+        }
+        /* nav */
+        .nav-container {
+            visibility: hidden;
+            z-index: 1;
+            position: fixed;
+            width: 100dvw;
+            height: 100dvh;
+            background-color: white;
+            overflow-y: auto;
+        }
+        body.show-menu .nav-container {
+            visibility: visible;
+        }
+        nav {
+            max-width: 60rem; 
+            margin: 2rem auto;
+            display: flex;
+            scroll-margin-top: 2rem;
+        }
+        nav > div {
+            flex-grow: 1;
+            padding: 0 2rem;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav li {
+            line-height: 2;
+            border-bottom: 1px solid black;
+        }
+        nav a, nav a:visited, nav a:active, nav a:focus {
+           color: inherit;
+           text-decoration: none; 
+           font-weight: 600;
+        }
+        nav a:hover {
+           color: #f47067;
         }
         /* content */
         main {
@@ -176,20 +215,77 @@
 </head>
 <body>
     <header>
-        <!-- <h1>JavaScript ... in a nutshell</h1> --> 
         <div class="hamburger-menu">
-            <input type="checkbox" id="menu-icon">
-            <label for="menu-icon">
+            <input type="checkbox" id="hamburger">
+            <label for="hamburger">
             <div></div>
             <div></div>
             <div></div>
             </label>
         </div>
+
+        <div class="nav-container">
+            <nav>
+                <div>
+                    <ul>
+                        <li><a href="#string.at">String.at()</a></li>
+                        <li><a href="#string.charat">String.charAt()</a></li>
+                        <li><a href="#string.concat">String.concat()</a></li>
+                        <li><a href="#string.endswith">String.endsWith()</a></li>
+                        <li><a href="#string.includes">String.includes()</a></li>
+                        <li><a href="#string.indexof">String.indexOf()</a></li>
+                        <li><a href="#string.lastindexof">String.lastIndexOf()</a></li>
+                        <li><a href="#string.match">String.match()</a></li>
+                        <li><a href="#string.padend">String.padEnd()</a></li>
+                        <li><a href="#string.padstart">String.padStart()</a></li>
+                        <li><a href="#string.repeat">String.repeat()</a></li>
+                        <li><a href="#string.replace">String.replace()</a></li>
+                        <li><a href="#string.replaceall">String.replaceAll()</a></li>
+                        <li><a href="#string.search">String.search()</a></li>
+                        <li><a href="#string.slice">String.slice()</a></li>
+                        <li><a href="#string.split">String.split()</a></li>
+                        <li><a href="#string.startswith">String.startsWith()</a></li>
+                        <li><a href="#string.substring">String.substring()</a></li>
+                        <li><a href="#string.tolowercase">String.toLowerCase()</a></li>
+                        <li><a href="#string.touppercase">String.toUpperCase()</a></li>
+                        <li><a href="#string.trim">String.trim()</a></li>
+                        <li><a href="#string.trimend">String.trimEnd()</a></li>
+                        <li><a href="#string.trimstart">String.trimStart()</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><a href="#array.at">Array.at()</a></li>
+                        <li><a href="#array.concat">Array.concat()</a></li>
+                        <li><a href="#array.every">Array.every()</a></li>
+                        <li><a href="#array.fill">Array.fill()</a></li>
+                        <li><a href="#array.filter">Array.filter()</a></li>
+                        <li><a href="#array.find">Array.find()</a></li>
+                        <li><a href="#array.findindex">Array.findIndex()</a></li>
+                        <li><a href="#array.findlast">Array.findLast()</a></li>
+                        <li><a href="#array.findlastindex">Array.findLastIndex()</a></li>
+                        <li><a href="#array.flat">Array.flat()</a></li>
+                        <li><a href="#array.foreach">Array.forEach()</a></li>
+                        <li><a href="#array.from">Array.from()</a></li>
+                        <li><a href="#array.includes">Array.includes()</a></li>
+                        <li><a href="#array.indexof">Array.indexOf()</a></li>
+                        <li><a href="#array.join">Array.join()</a></li>
+                        <li><a href="#array.lastindexof">Array.lastIndexOf()</a></li>
+                        <li><a href="#array.map">Array.map()</a></li>
+                        <li><a href="#array.pop">Array.pop()</a></li>
+                        <li><a href="#array.method">Array.method()</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><a href="#object.method">Object.method()</a></li>
+                    </ul>
+                </div>    
+            </nav>
+        </div>
     </header>
 
     <main>
-        
-
         <h2 id="string-methods"><a href="#string-methods">String methods</a></h2>
 
         <!-- string.at() -->
@@ -516,7 +612,7 @@ arr.find(threshold) // => 4</code></pre>
 
         <!-- array.findIndex() -->
         <section>
-            <h3 id="array.findIndex"><a href="#array.findIndex"><span>Array</span>.findIndex()</a></h3>
+            <h3 id="array.findindex"><a href="#array.findindex"><span>Array</span>.findIndex()</a></h3>
             <pre><code class="language-javascript">const arr = [1, 2, 3, 4, 5]
 const threshold = el => el > 3
 
@@ -527,7 +623,7 @@ arr.findIndex(threshold) // => 3</code></pre>
 
         <!-- array.findLast() -->
         <section>
-            <h3 id="array.findLast"><a href="#array.findLast"><span>Array</span>.findLast()</a></h3>
+            <h3 id="array.findlast"><a href="#array.findlast"><span>Array</span>.findLast()</a></h3>
             <pre><code class="language-javascript">const arr = [1, 2, 3, 4, 5]
 const threshold = el => el > 3
 
@@ -538,7 +634,7 @@ arr.findLast(threshold) // => 5</code></pre>
 
         <!-- array.findLastIndex() -->
         <section>
-            <h3 id="array.findLastIndex"><a href="#array.findLastIndex"><span>Array</span>.findLastIndex()</a></h3>
+            <h3 id="array.findlastindex"><a href="#array.findlastindex"><span>Array</span>.findLastIndex()</a></h3>
             <pre><code class="language-javascript">const arr = [1, 2, 3, 4, 5]
 const threshold = el => el > 3
 
@@ -561,7 +657,7 @@ arr2.flat(2) // => [1, 2, [3, 4]]</code></pre>
 
         <!-- array.forEach() -->
         <section>
-            <h3 id="array.forEach"><a href="#array.forEach"><span>Array</span>.forEach()</a></h3>
+            <h3 id="array.foreach"><a href="#array.foreach"><span>Array</span>.forEach()</a></h3>
             <pre><code class="language-javascript">const arr1 = [1, 2, 3]
 const arr2 = []
 
@@ -594,7 +690,7 @@ arr.includes('ca') // => false</code></pre>
 
         <!-- array.indexOf() -->
         <section>
-            <h3 id="array.indexOf"><a href="#array.indexOf"><span>Array</span>.indexOf()</a></h3>
+            <h3 id="array.indexof"><a href="#array.indexof"><span>Array</span>.indexOf()</a></h3>
             <pre><code class="language-javascript">const arr = ['cat', 'dog', 'horse', 'cat']
 
 arr.indexOf('cat') // => 0
@@ -617,7 +713,7 @@ arr.join(' - ') // => 'Bike - Car - Truck'</code></pre>
 
         <!-- array.lastIndexOf() -->
         <section>
-            <h3 id="array.lastIndexOf"><a href="#array.lastIndexOf"><span>Array</span>.lastIndexOf()</a></h3>
+            <h3 id="array.lastindexof"><a href="#array.lastindexof"><span>Array</span>.lastIndexOf()</a></h3>
             <pre><code class="language-javascript">const arr = ['cat', 'dog', 'horse', 'cat']
 
 arr.lastIndexOf('cat') // => 3
@@ -657,17 +753,6 @@ arr.method() // => []</code></pre>
             <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
         </section>
 
-        <!-- array.method() -->
-        <section>
-            <h3 id="array.method"><a href="#array.method"><span>Array</span>.method()</a></h3>
-            <pre><code class="language-javascript">const arr = []
-
-arr.method() // => []</code></pre>
-            <p></p>
-            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
-        </section>
-
-
 
 
 
@@ -689,5 +774,33 @@ obj.method() // => {}</code></pre>
     <footer>
         <p>Footer - no content yet</p>
     </footer>
+
+    <script>
+        'use strict'
+
+        // DOM elements
+        const body = document.querySelector('body')
+        const hamburger = document.getElementById('hamburger')
+        const nav = document.querySelector('nav')
+        const navLinks = Array.from(document.querySelectorAll('nav a'))
+
+        // toggle nav via hamburger icon
+        hamburger.addEventListener('change', () => {
+            if (hamburger.checked) {
+                body.classList.add('show-menu')
+                nav.scrollIntoView()
+            } else {
+                body.classList.remove('show-menu')
+            }
+        })
+
+        // hide nav when clicking on nav link
+        document.addEventListener('click', (e) => {
+            if (navLinks.includes(e.target)) {
+                body.classList.remove('show-menu')
+                hamburger.checked = false
+            }
+        })
+    </script>
 </body>
 </html>
