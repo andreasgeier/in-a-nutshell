@@ -34,7 +34,7 @@
             color: rgb(34, 39, 46); 
             font-family: 'Roboto Serif', serif;
             line-height: 1.5;
-            scroll-behavior: smooth;
+            scroll-behavior: auto;
             /* scroll-padding-top: 5rem; */
         }
         body {
@@ -113,7 +113,6 @@
         }
         /* nav */
         .nav-container {
-            visibility: hidden;
             z-index: 1;
             position: fixed;
             top: 0;
@@ -126,9 +125,11 @@
             background-color: white;
             overflow-y: auto;
             box-shadow: 0 0 1rem 0 rgba(0,0,0,.5);
+            transform: translateY(-110%);
+            transition: all ease 200ms;
         }
         body.show-menu .nav-container {
-            visibility: visible;
+            transform: translateY(0);
         }
         nav {
             flex-basis: 60rem;
