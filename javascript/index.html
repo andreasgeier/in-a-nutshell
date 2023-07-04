@@ -38,9 +38,9 @@
             /* scroll-padding-top: 5rem; */
         }
         body {
+            margin: 0;
             padding-left: calc(100vw - 100%); /* scrollbar hack */
             /* https://stackoverflow.com/questions/1417934/how-to-prevent-scrollbar-from-repositioning-web-page */
-            margin: 0;
         }
         body.show-menu {
             overflow: hidden;
@@ -116,8 +116,13 @@
             visibility: hidden;
             z-index: 1;
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100dvw;
-            max-height: 61dvh;
+            max-height: 99.999dvh;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
             background-color: white;
             overflow-y: auto;
             box-shadow: 0 0 1rem 0 rgba(0,0,0,.5);
@@ -126,12 +131,20 @@
             visibility: visible;
         }
         nav {
-            max-width: 50rem; 
-            margin: 1rem auto;
+            flex-basis: 60rem;
+            max-width: 60rem;
+            margin: 2.25rem 6rem;
             padding-left: calc(100vw - 100%); /* scrollbar hack */
             display: flex;
-            gap: 2rem;
+            flex-direction: column;
+            gap: 1.5rem;
             scroll-margin-top: 2rem;
+        }
+        @media all and (min-width: 800px) {
+            nav { 
+                flex-direction: row;
+                gap: 3rem;
+            }
         }
         nav > div {
             flex-grow: 1;
@@ -139,6 +152,7 @@
         nav ul {
             list-style-type: none;
             padding: 0;
+            margin: 0;
         }
         nav li {
             line-height: 2;
@@ -154,9 +168,9 @@
         }
         /* content */
         main {
-            max-width: 50rem;
-            padding: 1rem 6rem;
-            margin: auto;
+            max-width: 60rem;
+            padding: 0 5rem;
+            margin: 1rem auto;
         }
         footer {
             color: rgb(95, 99, 104);
@@ -181,6 +195,9 @@
             font-size: 1.5rem;
             position: relative;
             scroll-margin-top: 2.25rem;
+        }
+        h2 {
+            margin-top: 2rem;
         }
         h2:not(:first-of-type) {
             padding-top: 5rem;
@@ -791,13 +808,21 @@ obj.method() // => {}</code></pre>
         const nav = document.querySelector('nav')
         const navLinks = Array.from(document.querySelectorAll('nav a'))
 
+        // get scrollbar width (jumping content hack)
+        const scrollBarWidth = window.getComputedStyle(body).paddingLeft
+        console.log(scrollBarWidth)
+
         // toggle nav via hamburger icon
         hamburger.addEventListener('change', () => {
             if (hamburger.checked) {
                 body.classList.add('show-menu')
+                body.style.paddingRight = scrollBarWidth
+                body.style.paddingLeft = scrollBarWidth
                 nav.scrollIntoView()
             } else {
                 body.classList.remove('show-menu')
+                body.style.removeProperty('padding-right')
+                body.style.removeProperty('padding-left')
             }
         })
 
@@ -805,6 +830,8 @@ obj.method() // => {}</code></pre>
         document.addEventListener('click', (e) => {
             if (navLinks.includes(e.target)) {
                 body.classList.remove('show-menu')
+                body.style.removeProperty('padding-right')
+                body.style.removeProperty('padding-left')
                 hamburger.checked = false
             }
         })
