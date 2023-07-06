@@ -764,8 +764,170 @@ const arr2 = arr1.map(el => el * el) // => [1, 4, 9]</code></pre>
 
 arr.pop() // => 'horse'
 console.log(arr) // => ['cat', 'dog']</code></pre>
-            <p></p>
+            <p>The <code>pop()</code> method removes the last element from an array and returns that element. This method changes the length of the array.</p>
             <p>Syntax: <code>pop()</code> <span class="divider">/</span> Return value: Array element</p>
+        </section>
+
+        <!-- array.push() -->
+        <section>
+            <h3 id="array.push"><a href="#array.push"><span>Array</span>.push()</a></h3>
+            <pre><code class="language-javascript">const arr = ['cat', 'dog', 'horse']
+
+arr.push('sheep') // => 4
+console.log(arr) // => ['cat', 'dog','horse', 'sheep']</code></pre>
+            <p>The <code>push()</code> method adds the specified elements to the end of an array and returns the new length of the array.</p>
+            <p>Syntax: <code>push(element)</code> <code>push(element0, element1, /* … ,*/ elementN)</code> <span class="divider">/</span> Return value: Array length</p>
+        </section>
+
+        <!-- array.reduce() -->
+        <section>
+            <h3 id="array.reduce"><a href="#array.reduce"><span>Array</span>.reduce()</a></h3>
+            <pre><code class="language-javascript">const arr = [1, 2, 3]
+
+arr.reduce((a, b) => a + b) // => 6</code></pre>
+            <p>The <code>reduce()</code> method executes a user-supplied "reducer" callback function on each element of the array, in order, passing in the return value from the calculation on the preceding element. The final result of running the reducer across all elements of the array is a single value.</p>
+            <p>Syntax: <code>reduce(callbackFn)</code> <span class="divider">/</span> Return value: Result of reducer callback funtion.</p>
+        </section>
+
+        <!-- array.shift() -->
+        <section>
+            <h3 id="array.shift"><a href="#array.shift"><span>Array</span>.shift()</a></h3>
+            <pre><code class="language-javascript">const arr = ['cat', 'dog', 'horse']
+
+arr.shift() // => 'cat'
+console.log(arr) // => ['dog', 'horse']</code></pre>
+            <p>The <code>shift()</code> method removes the first element from an array and returns that removed element. This method changes the length of the array.</p>
+            <p>Syntax: <code>shift()</code> <span class="divider">/</span> Return value: Array element</p>
+        </section>
+
+        <!-- array.slice() -->
+        <section>
+            <h3 id="array.slice"><a href="#array.slice"><span>Array</span>.slice()</a></h3>
+            <pre><code class="language-javascript">const arr = ['cat', 'dog', 'horse']
+
+arr.slice() // => ['cat', 'dog', 'horse']
+arr.slice(1) // => ['dog', 'horse']
+arr.slice(1, 2) // => ['dog']</code></pre>
+            <p>The <code>slice()</code> method returns a copy of a portion of an array into a new array object selected from start to end (end not included) where start and end represent the index of items in that array. The original array will not be modified.</p>
+            <p>Syntax: <code>slice()</code> <code>slice(start)</code> <code>slice(start, end)</code> <span class="divider">/</span> Return value: Array</p>
+        </section>
+
+        <!-- array.sort() -->
+        <section>
+            <h3 id="array.sort"><a href="#array.sort"><span>Array</span>.sort()</a></h3>
+            <pre><code class="language-javascript">const arr1 = ['Anna', 'Charlie', 'Ben']
+const arr2 = [1, 5, 7, 12, 500]
+
+arr1.sort() // => ['Anna', 'Ben', 'Charlie']
+arr2.sort() // => [1, 12, 5, 500, 7]
+arr2.sort((a, b) => a - b) // => [1, 5, 7, 12, 500]</b></code></pre>
+            <p>The <code>sort()</code> method sorts the elements of an array in place and returns the reference to the same array, now sorted. The default sort order is ascending, built upon converting the elements into strings, then comparing their sequences of UTF-16 code units values.</p>
+            <p>Syntax: <code>sort()</code> <code>sort(compareFn)</code> <span class="divider">/</span> Return value: Array</p>
+        </section>
+
+        <!-- array.splice() -->
+        <section>
+            <h3 id="array.splice"><a href="#array.splice"><span>Array</span>.splice()</a></h3>
+            <pre><code class="language-javascript">const arr1 = ['one', 'two', 'three']
+const arr2 = ['one', 'two', 'three']
+
+arr1.splice(1) // => ['two', 'three']
+arr2.splice(1, 2, 'four', 'five') // => ['three']
+
+console.log(arr1) // => ['one']
+console.log(arr2) // => ['one', 'two', four', 'five']</code></pre>
+            <p>The <code>splice()</code> method changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.</p>
+            <p>Syntax: <code>splice(start)</code> <code>splice(start, deleteCount)</code> <code>splice(start, deleteCount, item0, item1, /* … ,*/ itemN)</code> <span class="divider">/</span> Return value: Deleted element(s)</p>
+        </section>
+
+        <!-- array.method() -->
+        <section>
+            <h3 id="array.method"><a href="#array.method"><span>Array</span>.method()</a></h3>
+            <pre><code class="language-javascript">const arr = []
+
+arr.method() // => []</code></pre>
+            <p></p>
+            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
+        </section>
+
+        <!-- array.method() -->
+        <section>
+            <h3 id="array.method"><a href="#array.method"><span>Array</span>.method()</a></h3>
+            <pre><code class="language-javascript">const arr = []
+
+arr.method() // => []</code></pre>
+            <p></p>
+            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
+        </section>
+
+        <!-- array.method() -->
+        <section>
+            <h3 id="array.method"><a href="#array.method"><span>Array</span>.method()</a></h3>
+            <pre><code class="language-javascript">const arr = []
+
+arr.method() // => []</code></pre>
+            <p></p>
+            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
+        </section>
+
+        <!-- array.method() -->
+        <section>
+            <h3 id="array.method"><a href="#array.method"><span>Array</span>.method()</a></h3>
+            <pre><code class="language-javascript">const arr = []
+
+arr.method() // => []</code></pre>
+            <p></p>
+            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
+        </section>
+
+        <!-- array.method() -->
+        <section>
+            <h3 id="array.method"><a href="#array.method"><span>Array</span>.method()</a></h3>
+            <pre><code class="language-javascript">const arr = []
+
+arr.method() // => []</code></pre>
+            <p></p>
+            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
+        </section>
+
+        <!-- array.method() -->
+        <section>
+            <h3 id="array.method"><a href="#array.method"><span>Array</span>.method()</a></h3>
+            <pre><code class="language-javascript">const arr = []
+
+arr.method() // => []</code></pre>
+            <p></p>
+            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
+        </section>
+
+        <!-- array.method() -->
+        <section>
+            <h3 id="array.method"><a href="#array.method"><span>Array</span>.method()</a></h3>
+            <pre><code class="language-javascript">const arr = []
+
+arr.method() // => []</code></pre>
+            <p></p>
+            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
+        </section>
+
+        <!-- array.method() -->
+        <section>
+            <h3 id="array.method"><a href="#array.method"><span>Array</span>.method()</a></h3>
+            <pre><code class="language-javascript">const arr = []
+
+arr.method() // => []</code></pre>
+            <p></p>
+            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
+        </section>
+
+        <!-- array.method() -->
+        <section>
+            <h3 id="array.method"><a href="#array.method"><span>Array</span>.method()</a></h3>
+            <pre><code class="language-javascript">const arr = []
+
+arr.method() // => []</code></pre>
+            <p></p>
+            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
         </section>
 
         <!-- array.method() -->
