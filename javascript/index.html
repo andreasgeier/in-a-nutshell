@@ -304,12 +304,16 @@
                         <li><a href="#array.slice">Array.slice()</a></li>
                         <li><a href="#array.sort">Array.sort()</a></li>
                         <li><a href="#array.splice">Array.splice()</a></li>
-                        <li><a href="#array.method">Array.method()</a></li>
                     </ul>
                 </div>
                 <div>
                     <ul>
-                        <li><a href="#object.method">Object.method()</a></li>
+                        <li><a href="#object.assign">Object.assign()</a></li>
+                        <li><a href="#object.create">Object.create()</a></li>
+                        <li><a href="#object.entries">Object.entries()</a></li>
+                        <li><a href="#object.fromentries">Object.fromEntries()</a></li>
+                        <li><a href="#object.keys">Object.keys()</a></li>
+                        <li><a href="#object.values">Object.values()</a></li>
                     </ul>
                 </div>    
             </nav>
@@ -846,32 +850,72 @@ console.log(arr2) // => ['one', 'two', four', 'five']</code></pre>
             <p>Syntax: <code>splice(start)</code> <code>splice(start, deleteCount)</code> <code>splice(start, deleteCount, item0, item1, /* … ,*/ itemN)</code> <span class="divider">/</span> Return value: Deleted element(s)</p>
         </section>
 
-        <!-- array.method() -->
-        <section>
-            <h3 id="array.method"><a href="#array.method"><span>Array</span>.method()</a></h3>
-            <pre><code class="language-javascript">const arr = []
-
-arr.method() // => []</code></pre>
-            <p></p>
-            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
-        </section>
-
         
 
 
 
         <h2 id="object-methods"><a href="#object-methods">Object methods</a></h2>
 
-        <!-- object.method() -->
+        <!-- object.assign() -->
         <section>
-            <h3 id="object.method"><a href="#object.method"><span>Object</span>.method()</a></h3>
-            <pre><code class="language-javascript">const obj = {}
+            <h3 id="object.assign"><a href="#object.assign"><span>Object</span>.assign()</a></h3>
+            <pre><code class="language-javascript">const obj1 = { a: 1, b: 2 }
+const obj2 = { b: 3, c: 4 }
 
-obj.method() // => {}</code></pre>
-            <p></p>
-            <p>Syntax: <code></code> <span class="divider">/</span> Return value: </p>
+Object.assign(obj1, obj2) // => { a: 1; b: 3, c: 4 }</code></pre>
+            <p>The <code>Object.assign()</code> static method copies all properties from one or more source objects to a target object. It returns the modified target object.</p>
+            <p>Syntax: <code>Object.assign(target, ...sources)</code> <span class="divider">/</span> Return value: Object</p>
         </section>
 
+        <!-- object.create() -->
+        <section>
+            <h3 id="object.create"><a href="#object.create"><span>Object</span>.create()</a></h3>
+            <pre><code class="language-javascript">const obj = { firstname: 'Peter', name: 'Parker' }
+
+Object.create(obj) // => { firstname: 'Peter', name: 'Parker' }</code></pre>
+            <p>The <code>Object.create()</code> static method creates a new object, using an existing object as the prototype of the newly created object.</p>
+            <p>Syntax: <code>Object.create(proto)</code> <span class="divider">/</span> Return value: Object</p>
+        </section>
+
+        <!-- object.entries() -->
+        <section>
+            <h3 id="object.entries"><a href="#object.entries"><span>Object</span>.entries()</a></h3>
+            <pre><code class="language-javascript">const obj = { firstname: 'Peter', name: 'Parker' }
+
+Object.entries(obj) // => [['firstname': 'Peter'], ['name': 'Parker']]</code></pre>
+            <p>The <code>Object.entries()</code> static method returns an array of a given object's own enumerable string-keyed property key-value pairs.</p>
+            <p>Syntax: <code>Object.entries(obj)</code> <span class="divider">/</span> Return value: Array</p>
+        </section>
+
+        <!-- object.fromentries() -->
+        <section>
+            <h3 id="object.fromentries"><a href="#object.fromentries"><span>Object</span>.fromEntries()</a></h3>
+            <pre><code class="language-javascript">const arr = [['firstname': 'Peter'], ['name': 'Parker']]
+
+const obj = Object.fromEntries(arr) // => { firstname: 'Peter', name: 'Parker' }</code></pre>
+            <p>The <code>Object.fromEntries()</code> static method transforms a list of key-value pairs into an object.</p>
+            <p>Syntax: <code>Object.fromEntries(iterable)</code> <span class="divider">/</span> Return value: </p>
+        </section>
+
+        <!-- object.keys() -->
+        <section>
+            <h3 id="object.keys"><a href="#object.keys"><span>Object</span>.keys()</a></h3>
+            <pre><code class="language-javascript">const obj = { firstname: 'Peter', name: 'Parker' }
+
+Object.keys(obj) // => ['firstname', 'name']</code></pre>
+            <p>The <code>Object.keys()</code> static method returns an array of a given object's own enumerable string-keyed property names.</p>
+            <p>Syntax: <code>Object.keys(obj)</code> <span class="divider">/</span> Return value: Array</p>
+        </section>
+
+        <!-- object.values() -->
+        <section>
+            <h3 id="object.values"><a href="#object.values"><span>Object</span>.values()</a></h3>
+            <pre><code class="language-javascript">const obj = { firstname: 'Peter', name: 'Parker' }
+
+Object.values(obj) // => ['Peter', 'Parker']</code></pre>
+            <p>The <code>Object.values()</code> static method returns an array of a given object's own enumerable string-keyed property values.</p>
+            <p>Syntax: <code>Object.values(obj)</code> <span class="divider">/</span> Return value: Array</p>
+        </section>
     </main>
 
     <footer>
