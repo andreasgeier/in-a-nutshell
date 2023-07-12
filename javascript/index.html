@@ -11,7 +11,7 @@
     <!-- fonts.google.com -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto+Serif:ital,opsz,wght@0,8..144,300;0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;1,8..144,300;1,8..144,400;1,8..144,500;1,8..144,600;1,8..144,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Roboto+Serif:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
 
     <!-- highlight.js via CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark-dimmed.min.css">
@@ -30,12 +30,43 @@
 
     <!-- custom page styles -->
     <style>
+        /* color palette */
+        /* https://coolors.co/palette/f8f9fa-e9ecef-dee2e6-ced4da-adb5bd-6c757d-495057-343a40-212529 */
+        :root {
+            --greyscale-100: rgb(248, 249, 250);
+            --greyscale-200: rgb(233, 236, 239);
+            --greyscale-300: rgb(222, 226, 230);
+            --greyscale-400: rgb(206, 212, 218);
+            --greyscale-500: rgb(173, 181, 189);
+            --greyscale-600: rgb(108, 117, 125);
+            --greyscale-700: rgb( 73,  80,  87);
+            --greyscale-800: rgb( 52,  58,  64);
+            --greyscale-900: rgb( 33,  37,  41);
+
+            --font-family-serif: 'Roboto Serif', serif;
+            --font-family-mono: 'Roboto Mono', monospace;
+            --font-size-bigger: 2rem;
+            --font-size-big: 1.5rem;
+            --font-size: 1rem;
+            --font-size-small: .875rem;
+            --font-size-smaller: .75rem;
+            --font-weight-100: 100;
+            --font-weight-200: 200;
+            --font-weight-300: 300;
+            --font-weight-400: 400;
+            --font-weight-500: 500;
+            --font-weight-600: 600;
+            --font-line-height: 1.5;
+        }
         html {
-            color: rgb(34, 39, 46); 
-            font-family: 'Roboto Serif', serif;
-            line-height: 1.5;
+            color: var(--greyscale-400);
+            font-family: var(--font-family-serif);
+            font-size: var(--font-size);
+            font-weight: var(--font-weight-200);
+            line-height: var(--font-line-height);
             scroll-behavior: auto;
             /* scroll-padding-top: 5rem; */
+            background-color: var(--greyscale-900);
         }
         body {
             margin: 0;
@@ -48,7 +79,7 @@
         /* header */
         h1 {
             font-size: 1.5rem;
-            font-weight: 300;
+            font-weight: var(--font-weight-300);
             margin: 1rem;
         }
         /* hamburger animation inspired by https://codepen.io/himalayasingh/pen/mNOJPM?editors=1100 */
@@ -69,19 +100,19 @@
             width: 1.25rem; 
             height: 1.25rem;  
             cursor: pointer;
-            background-color: white;
-            border: 1rem solid white;
+            background-color: var(--greyscale-900);
+            border: 1rem solid var(--greyscale-900);
             border-radius: 50%; 
         }
         label:hover, label:focus             {
-            background-color: rgb(236, 237, 238);;
-            border-color: rgb(236, 237, 238);;
+            background-color: var(--greyscale-700);
+            border-color: var(--greyscale-700);
         }        
         label div {
             position: relative;
             top: 0;
             height: 20%;
-            background-color: black;
+            background-color: var(--greyscale-100);
             margin-bottom: 20%;
             transition: 0.3s ease transform, 0.3s ease top, 0.3s ease width,
                 0.3s ease right;
@@ -122,7 +153,7 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            background-color: white;
+            background-color: var(--greyscale-900);
             overflow-y: auto;
             box-shadow: 0 0 1rem 0 rgba(0,0,0,.5);
             transform: translateY(-110%);
@@ -156,44 +187,50 @@
             margin: 0;
         }
         nav li {
-            line-height: 2;
-            border-bottom: 1px solid rgba(0,0,0,.25);
+            border-bottom: 1px solid var(--greyscale-700); 
         }
         nav a, nav a:visited, nav a:active, nav a:focus {
            color: inherit;
+           font-size: var(--font-size-small);
            text-decoration: none; 
-           font-weight: 600;
         }
         nav a:hover {
            color: #f47067;
         }
         /* content */
         main {
-            max-width: 60rem;
             padding: 0 5rem;
             margin: 1rem auto;
         }
         footer {
-            color: rgb(95, 99, 104);
             text-align: center;
-            padding: 2rem;
+            padding: 8rem 2rem;
             margin-top: 4rem;
-            background-color: rgb(248, 249, 250);
+            background-color: var(--greyscale-800);
         }
         pre {
-            margin: 1rem 0 1.5rem; 
+            margin: 1rem auto 1.5rem auto; 
         }
-        code {
-            font-family: 'Roboto Mono', monospace;
+        pre code {
+            font-family: var(--font-family-mono);
+            font-size: var(--font-size);
+            background-color: rgb(24, 26, 33) !important;
             border-radius: .5rem;   
+            border: 1px solid black; 
         }
         p code {
-            padding: 0 .25rem .125rem;
-            background-color: rgb(236, 237, 238);
+            display: inline-block;
+            font-family: var(--font-family-mono);
+            font-size: var(--font-size-small);
+            padding: 0 .25rem;
+            margin: 0 .125rem;
+            background-color: rgb(20, 22, 29) !important;
             border-radius: .25rem;
+            border: 1px solid var(--greyscale-800);
+            border: 1px solid black; 
         }
         h2, h3 {
-            font-size: 1.5rem;
+            font-size: var(--font-size-big);
             position: relative;
             scroll-margin-top: 2.25rem;
         }
@@ -203,14 +240,14 @@
         h2:not(:first-of-type) {
             padding-top: 5rem;
             margin-top: 6rem;
-            border-top: 2px solid rgb(34, 39, 46);
+            border-top: 1px solid var(--greyscale-100);
         }
         h2:not(:first-of-type) a:hover::before {
             top: 5.125rem;
         }
         h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: var(--font-size-big);
+            font-weight: 400;
             margin-top: 2rem;
         }
         h3 span {
