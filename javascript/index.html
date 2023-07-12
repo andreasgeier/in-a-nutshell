@@ -45,18 +45,24 @@
 
             --font-family-serif: 'Roboto Serif', serif;
             --font-family-mono: 'Roboto Mono', monospace;
+
             --font-size-bigger: 2rem;
             --font-size-big: 1.5rem;
             --font-size: 1rem;
             --font-size-small: .875rem;
             --font-size-smaller: .75rem;
+
+            --font-line-height: 1.375;
+            --font-line-height-extended: 2;
+
             --font-weight-100: 100;
             --font-weight-200: 200;
             --font-weight-300: 300;
             --font-weight-400: 400;
             --font-weight-500: 500;
             --font-weight-600: 600;
-            --font-line-height: 1.5;
+
+            --spacing-to-viewport: 3rem;
         }
         html {
             color: var(--greyscale-400);
@@ -64,14 +70,11 @@
             font-size: var(--font-size);
             font-weight: var(--font-weight-200);
             line-height: var(--font-line-height);
-            scroll-behavior: auto;
-            /* scroll-padding-top: 5rem; */
             background-color: var(--greyscale-900);
+            scroll-behavior: auto;
         }
         body {
             margin: 0;
-            padding-left: calc(100vw - 100%); /* scrollbar hack */
-            /* https://stackoverflow.com/questions/1417934/how-to-prevent-scrollbar-from-repositioning-web-page */
         }
         body.show-menu {
             overflow: hidden;
@@ -172,12 +175,6 @@
             gap: 1.5rem;
             scroll-margin-top: 2rem;
         }
-        @media all and (min-width: 800px) {
-            nav { 
-                flex-direction: row;
-                gap: 3rem;
-            }
-        }
         nav > div {
             flex-grow: 1;
         }
@@ -188,20 +185,16 @@
         }
         nav li {
             border-bottom: 1px solid var(--greyscale-700); 
+            line-height: var(--font-line-height-extended);
         }
         nav a, nav a:visited, nav a:active, nav a:focus {
            color: inherit;
-           font-size: var(--font-size-small);
            text-decoration: none; 
         }
         nav a:hover {
            color: #f47067;
         }
         /* content */
-        main {
-            padding: 0 5rem;
-            margin: 1rem auto;
-        }
         footer {
             text-align: center;
             padding: 8rem 2rem;
@@ -209,14 +202,22 @@
             background-color: var(--greyscale-800);
         }
         pre {
-            margin: 1rem auto 1.5rem auto; 
+            margin-right: var(--spacing-to-viewport);
+            margin-left: var(--spacing-to-viewport);
         }
         pre code {
             font-family: var(--font-family-mono);
             font-size: var(--font-size);
+            padding: .75rem 1rem !important;
+            margin: 0 -.25rem !important;
             background-color: rgb(24, 26, 33) !important;
-            border-radius: .5rem;   
-            border: 1px solid black; 
+            border-radius: .5rem;
+        }
+        p {
+            margin-block-start: .75rem;
+            margin-block-end: .75rem;
+            margin-left: var(--spacing-to-viewport);
+            margin-right: var(--spacing-to-viewport);
         }
         p code {
             display: inline-block;
@@ -224,14 +225,13 @@
             font-size: var(--font-size-small);
             padding: 0 .25rem;
             margin: 0 .125rem;
-            background-color: rgb(20, 22, 29) !important;
+            background-color: var(--greyscale-800) !important;
             border-radius: .25rem;
-            border: 1px solid var(--greyscale-800);
-            border: 1px solid black; 
         }
         h2, h3 {
             font-size: var(--font-size-big);
-            position: relative;
+            margin-left: var(--spacing-to-viewport);
+            margin-right: var(--spacing-to-viewport);
             scroll-margin-top: 2.25rem;
         }
         h2 {
@@ -248,7 +248,10 @@
         h3 {
             font-size: var(--font-size-big);
             font-weight: 400;
-            margin-top: 2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--greyscale-700)
         }
         h3 span {
             /* color: rgb(151, 156, 161); */
